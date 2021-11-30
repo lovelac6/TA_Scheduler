@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from TA_Scheduler.models import User
 # Create your tests here.
 class Login(TestCase):
+
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create(username="existingUser", password="secret")
@@ -29,12 +30,6 @@ class Login(TestCase):
         response = self.client.post("/", {"username": "", "password": "secret"}, follow=True)
         self.assertEqual(response.context["message"], "bad username",
                          msg="No bad username message when user does not enter a password")
-
-    def test_logout(self):
-        self.client.post("/", {"username": "existingUser", "password": "secret"}, follow=True)
-        response = self.client.get("/", {}, follow=True)
-        with self.assertRaises(KeyError, msg="Logged in user did not successfully logout"):
-            response.context["username"]
 
     def test_switchUsers(self):
         self.client.post("/", {"username": "existingUser", "password": "secret"}, follow=True)
