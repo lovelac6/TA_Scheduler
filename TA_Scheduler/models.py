@@ -9,8 +9,13 @@ class UserType(models.TextChoices):
 class User(models.Model):
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
+    accountType = models.CharField(max_length=1, choices=UserType.choices, default=UserType.TA)
 
-class AccountType(models.Model):
+class Course(models.Model):
+    name = models.CharField(max_length=20)
+    number = models.IntegerField()
+
+class CourseAssignment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    accountType = models.CharField(max_length=1, choices=UserType.choices, default="T")
-
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    
