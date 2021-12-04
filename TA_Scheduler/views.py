@@ -19,3 +19,7 @@ class Login(View):
             return render(request, "login.html", {"message": "invalid login"})
         else:
             return redirect("") #Still Deciding on what will be post-login page
+
+class Home(View):
+    def get(self, request):
+        return render(request, "homeView.html", {})
