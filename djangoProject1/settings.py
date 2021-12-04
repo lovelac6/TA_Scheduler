@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    str(BASE_DIR.joinpath('static'))
+    str(BASE_DIR.joinpath('static')),
 )
 
 # Default primary key field type
