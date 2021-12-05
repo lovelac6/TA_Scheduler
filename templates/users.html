@@ -1,9 +1,27 @@
 {% extends "homeView.html" %}
-{% block title %} Courses {%  endblock %}
+{% block title %} Users {%  endblock %}
 
 {% block content %}
-    ...
-    <form>
-        {%  csrf_token %}
-    </form>
+    <div class="top-banner">
+        <h2>Users</h2>
+    </div>
+
+    <div class="table">
+        <table>
+            <thead>
+            <tr>
+            <th>Name</th>
+            <th>Email</th>
+            </tr>
+            </thead>
+            <tr>
+            <td>Lorem Ipsum</td>
+            <td>Example@uwm.edu</td>
+            </tr>
+            <tr>
+                <td>Cameron Wizner</td>
+                <td>cjwizner@uwm.edu</td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
