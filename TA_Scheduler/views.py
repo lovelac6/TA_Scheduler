@@ -11,14 +11,14 @@ class Login(View):
         noSuchUser = False
         badPassword = False
         try:
-            m = User.objects.get(name=request.POST['name'])
+            m = User.objects.get(username=request.POST['username'])
             badPassword = (m.password != request.POST['password'])
         except:
             noSuchUser = True
         if noSuchUser | badPassword:
             return render(request, "login.html", {"message": "invalid login"})
         else:
-            return redirect("") #Still Deciding on what will be post-login page
+            return redirect("/home/") #Still Deciding on what will be post-login page
 
 class Home(View):
     def get(self, request):
