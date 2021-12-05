@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-{% extends "header.html" %}
-{% block content %}
-<body>
-<h1>Home</h1>
-</body>
-{% endblock %}
+<!-- Side navigation -->
+<div class="sidenav">
+  <a href="/courses/">Courses</a>
+  <a href="/users/">Users</a>
+    <a href="/createcourse/">Create</a>
+</div>
+<div class="main">
+    {% extends "header.html" %}
+    {% block content %}
+	{% endblock %}
+</div>
 </html>
