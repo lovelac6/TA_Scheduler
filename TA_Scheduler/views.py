@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from TA_Scheduler.models import User
 
+
 # Create your views here.
 class Login(View):
     def get(self, request):
@@ -18,7 +19,8 @@ class Login(View):
         if noSuchUser | badPassword:
             return render(request, "login.html", {"message": "invalid login"})
         else:
-            return redirect("/home/") #Still Deciding on what will be post-login page
+            return redirect("/home/")  # Still Deciding on what will be post-login page
+
 
 class Home(View):
     def get(self, request):
