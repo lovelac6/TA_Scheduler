@@ -54,18 +54,22 @@ class CreateUser(View):
         else:
             return render(request, "createuser.html", {"message": "invalid login"})
 
-
 class CreateCourse(View):
     def get(self, request):
         return render(request, "createcourse.html", {})
+
     def post(self, request):
-        courseName = request.POST.get('coursename', '')
-        courseNumber = request.POST.get('number', '')
-        if courseName != '' and courseNumber != '' and courseNumber.isnumeric() and list(map(str,Course.objects.filter(name=courseName))).count() == 0 and list(map(str,Course.objects.filter(name=courseNumber))).count() == 0:
-            newCourse = Course(name=courseName, number=courseNumber)
-            newCourse.save()
+        badNumber = False
+        try:
+            a = Course.objects.get(name=request.POST['coursename'])
+            badNumber = (a.number != request.POST['number'])
+        except:
+            badNumber = True
+        if badNumber:
+            a = Course(name=request.POST['coursename'], number=request.POST['number'])
+            a.save()
+            return redirect("/createcourse/")
         else:
-            return render(request, "createCourse.html", {"message": "Enter a unique course name and number"})
-        return redirect("/courses/")
+            return render(request, "createcourse.html", {"message": "Class Number Taken"})
 
 
