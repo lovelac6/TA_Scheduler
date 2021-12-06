@@ -1,0 +1,28 @@
+{% extends "homeView.html" %}
+{% block title %} Courses {%  endblock %}
+
+{% block content %}
+    Create User
+<form action="/createuser/" method="post">
+    {%  csrf_token %}
+    <div>
+        <label for="username">Username:</label><br>
+            <input required pattern="[a-zA-Z0-9-]+" title="only numbers and alphabetical characters"
+                   id="username" type="text" name="username"><br>
+        <label for="password">Password:</label><br>
+            <input required pattern="[a-zA-Z0-9-]+" title="only numbers and alphabetical characters"
+                   id="password" type="text" name="password"><br>
+
+        <label for="type">Choose user's role:</label>
+        <select name = "type" id="type">
+            <option value="T">TA</option>
+            <option value="I">Instructor</option>
+            <option value="S">Supervisor</option>
+        </select><br>
+        <input type = "submit">
+    </div>
+{{ message }}
+
+
+</form>
+{% endblock %} 

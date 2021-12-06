@@ -32,25 +32,40 @@ class Courses(View):
         return render(request, "courses.html", {})
 
 
-class CreateCourse(View):
-    def get(self, request):
-        return render(request, "createcourse.html", {})
-
-    def post(self, request):
-        badNumber = False
-        try:
-            a = Course.objects.get(coursename=request.POST['coursename'])
-            badNumber = (a.number != request.POST['number'])
-        except:
-            badNumber = True
-        if badNumber:
-            a = Course(coursename=request.POST['coursename'], number=request.POST['number'])
-            a.save()
-            return redirect("/createcourse/")
-        else:
-            return render(request, "createcourse.html", {"message": "Class Number Taken"})
-
-
 class Users(View):
     def get(self, request):
         return render(request, "users.html", {})
+
+class CreateUser(View):
+    def get(self, request):
+        return render(request, "createuser.html", {})
+
+    def post(self, request):
+        noSuchUser = False
+        try:
+            b = User.objects.get(username=request.POST['username'])
+        except:
+            noSuchUser = True
+        if noSuchUser:
+            b = User(username=request.POST['username'], password=request.POST['password'],
+                     accountType=request.POST['type'])
+            b.save()
+            return redirect("/createuser/")
+        else:
+            return render(request, "createuser.html", {"message": "invalid login"})
+
+
+class CreateCourse(View):
+    def get(self, request):
+        return render(request, "createcourse.html", {})
+    def post(self, request):
+        courseName = request.POST.get('coursename', '')
+        courseNumber = request.POST.get('number', '')
+        if courseName != '' and courseNumber != '' and courseNumber.isnumeric() and list(map(str,Course.objects.filter(name=courseName))).count() == 0 and list(map(str,Course.objects.filter(name=courseNumber))).count() == 0:
+            newCourse = Course(name=courseName, number=courseNumber)
+            newCourse.save()
+        else:
+            return render(request, "createCourse.html", {"message": "Enter a unique course name and number"})
+        return redirect("/courses/")
+
+

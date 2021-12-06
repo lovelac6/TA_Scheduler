@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:sqlite:C:\Users\ecger\PycharmProjects\djangoProject1\db.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="db [2]" uuid="abdc814b-4a70-4734-9b86-3313b1531ece">
+    <data-source source="LOCAL" name="db [2]" uuid="3b9f4894-44fd-45fd-a362-50a24c9b74cb">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\lw021\Desktop\djano-lab\TA_Scheduler1\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\ecger\PycharmProjects\TA_Scheduler\db.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
