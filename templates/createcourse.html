@@ -3,7 +3,7 @@
 
 {% block content %}
     Create Course
-<form action="/createcourse/" method="post">
+<form action="/courses/" method="post">
     {%  csrf_token %}
         <label for="coursename">Course Name:</label><br>
         <input id="coursename" type="text" name="coursename"><br>

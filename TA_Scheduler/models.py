@@ -13,7 +13,8 @@ class User(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=20)
-    number = models.IntegerField()
+    #using integer field may be causing database issues
+    number = models.CharField(max_length=10)
 
 class CourseAssignment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

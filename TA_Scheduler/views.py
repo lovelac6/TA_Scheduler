@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from TA_Scheduler.models import User
+from TA_Scheduler.models import User, Course, CourseAssignment
 
 
 # Create your views here.
@@ -13,7 +13,6 @@ class Login(View):
         badPassword = False
         try:
             m = User.objects.get(username=request.POST['username'])
-            print(m)
             badPassword = (m.password != request.POST['password'])
         except:
             noSuchUser = True
@@ -60,3 +59,18 @@ class CreateUser(View):
         # this is probably redundant.
         else:
             return render(request, "createuser.html", {"message": "invalid login"})
+
+class CreateCourse(View):
+    def get(self, request):
+        return render(request, "createcourse.html", {})
+    def post(self, request):
+        courseName = request.POST.get('coursename', '')
+        courseNumber = request.POST.get('number', '')
+        if courseName != '' and courseNumber != '' and courseNumber.isnumeric() and list(map(str,Course.objects.filter(name=courseName))).count() == 0 and list(map(str,Course.objects.filter(name=courseNumber))).count() == 0:
+            newCourse = Course(name=courseName, number=courseNumber)
+            newCourse.save()
+        else:
+            return render(request, "createCourse.html", {"message": "Enter a unique course name and number"})
+        return redirect("/courses/")
+
+
