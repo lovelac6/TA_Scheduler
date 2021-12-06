@@ -51,26 +51,6 @@ class CreateUser(View):
                      accountType=request.POST['type'])
             b.save()
             return redirect("/createuser/")
-        # this is probably redundant.
-        else:
-            return render(request, "createuser.html", {"message": "invalid login"})
-
-class CreateUser(View):
-    def get(self, request):
-        return render(request, "createuser.html", {})
-
-    def post(self, request):
-        noSuchUser = False
-        try:
-            b = User.objects.get(username=request.POST['username'])
-        except:
-            noSuchUser = True
-        if noSuchUser:
-            b = User(username=request.POST['username'], password=request.POST['password'],
-                     accountType=request.POST['type'])
-            b.save()
-            return redirect("/createuser/")
-        # this is probably redundant.
         else:
             return render(request, "createuser.html", {"message": "invalid login"})
 
