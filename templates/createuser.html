@@ -5,10 +5,21 @@
     Create User
 <form action="/createuser/" method="post">
     {%  csrf_token %}
-        <label for="username">User Name:</label><br>
-        <input id="username" type="text" name="username"><br>
+ <div>
+        <label for="username">Username:</label><br>
+            <input id="username" type="text" name="username" required><br>
         <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password"><br>
-        <input class='button' type="submit">
+            <input type="text" id="password" name="password" required><br>
+
+        <label for="type">Choose user's role:</label>
+        <select name = "type" id="type">
+            <option value="T">TA</option>
+            <option value="I">Instructor</option>
+            <option value="S">Supervisor</option>
+        </select><br>
+        <input type = "submit">
+    </div>
+{{ message }}
+
 </form>
 {% endblock %}  

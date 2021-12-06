@@ -42,23 +42,38 @@ class CreateUser(View):
 
     def post(self, request):
         noSuchUser = False
-        badPassword = False
-        emptyUser = False
         try:
             b = User.objects.get(username=request.POST['username'])
-            emptyUser = b.username.len() == 0
-            badPassword = b.password.len() == 0
         except:
             noSuchUser = True
-        if badPassword | emptyUser:
-            return render(request, "createuser.html", {"message": "invalid login"})
-        elif noSuchUser:
-            b = User(name=request.post['name'], password = request.post['password'])
+        if noSuchUser:
+            b = User(username=request.POST['username'], password=request.POST['password'],
+                     accountType=request.POST['type'])
             b.save()
             return redirect("/createuser/")
         # this is probably redundant.
         else:
             return render(request, "createuser.html", {"message": "invalid login"})
+
+class CreateUser(View):
+    def get(self, request):
+        return render(request, "createuser.html", {})
+
+    def post(self, request):
+        noSuchUser = False
+        try:
+            b = User.objects.get(username=request.POST['username'])
+        except:
+            noSuchUser = True
+        if noSuchUser:
+            b = User(username=request.POST['username'], password=request.POST['password'],
+                     accountType=request.POST['type'])
+            b.save()
+            return redirect("/createuser/")
+        # this is probably redundant.
+        else:
+            return render(request, "createuser.html", {"message": "invalid login"})
+
 
 class CreateCourse(View):
     def get(self, request):
