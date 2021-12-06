@@ -6,9 +6,12 @@
 <form action="/createcourse/" method="post">
     {%  csrf_token %}
         <label for="coursename">Course Name:</label><br>
-        <input id="coursename" type="text" name="coursename" required><br>
+        <input required pattern ="[A-Za-z]{0,}" title="only alphabetical letters"
+               id="coursename" type="text" name="coursename"><br>
         <label for="number">Course Number:</label><br>
-        <input type="text" id="number" name="number" required><br>
+        <input required pattern ="\d+" title="only numbers" type="text"
+               id="number" name="number"><br>
         <input type="submit">
 </form>
-{% endblock %}
+        {{ message }}
+{% endblock %} 
