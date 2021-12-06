@@ -5,11 +5,13 @@
     Create User
 <form action="/createuser/" method="post">
     {%  csrf_token %}
- <div>
+    <div>
         <label for="username">Username:</label><br>
-            <input id="username" type="text" name="username" required><br>
+            <input required pattern="[a-zA-Z0-9-]+" title="only numbers and alphabetical characters"
+                   id="username" type="text" name="username"><br>
         <label for="password">Password:</label><br>
-            <input type="text" id="password" name="password" required><br>
+            <input required pattern="[a-zA-Z0-9-]+" title="only numbers and alphabetical characters"
+                   id="password" type="text" name="password"><br>
 
         <label for="type">Choose user's role:</label>
         <select name = "type" id="type">
@@ -21,5 +23,6 @@
     </div>
 {{ message }}
 
+
 </form>
-{% endblock %}  
+{% endblock %} 
