@@ -31,6 +31,12 @@ body {
 	margin-top: 10px;
 }
 
+.message {
+	color: red;
+    text-align: center;
+    font-style: italic;
+}
+
 .button {
 	text-align: center;
 	height:20px;
